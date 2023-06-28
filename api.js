@@ -1,4 +1,29 @@
+checkSession();
+let user;
 
+function checkSession() {
+
+    fetch('http://localhost/php&js/backend/checksession.php')
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.valid) {
+
+                fetch(`http://localhost/php&js/backend/getuser.php?id=${data.user_id}`)
+                    .then(response => response.json())
+                    .then(data => {
+
+                        user = data.user;
+                        const username = document.querySelector('#name');
+                        username.innerHTML = user.firstname + " " + user.lastname;
+
+                    })
+
+            }
+
+        })
+
+}
 
 try {
     const loginForm = document.querySelector("#loginForm");

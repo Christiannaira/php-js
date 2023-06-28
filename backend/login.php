@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'message' => "You logged in successfully!"
             );
 
+            $_SESSION['user_id'] = $row['id'];
             echo json_encode($response);
 
         } else {
