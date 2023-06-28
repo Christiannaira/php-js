@@ -15,6 +15,13 @@ try {
 
 }
 
+try {
+    const logoutButton = document.querySelector("#logout");
+    logoutButton.addEventListener("click", logout);
+} catch (e) {
+
+}
+
 
 function login(event) {
 
@@ -116,6 +123,21 @@ function register(event) {
 
     }
 
+
+}
+
+function logout() {
+
+    fetch('http://localhost/php&js/backend/logout.php')
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.success) {
+                alert(data.message);
+                window.location.replace('login.html');
+            }
+
+        })
 
 }
 
